@@ -34,7 +34,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.getUiSettings().setZoomControlsEnabled(true);
+//        mMap.getUiSettings().setZoomControlsEnabled(true);
 
 
         // Add a marker in Sydney and move the camera
