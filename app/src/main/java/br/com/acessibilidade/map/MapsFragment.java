@@ -39,12 +39,12 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
         // Add a marker in Sydney and move the camera
         LatLng fortaleza = new LatLng(-3.786359, -38.503355);
-        MarkerOptions marker = new MarkerOptions();
-        marker.position(fortaleza);
-        marker.title("Fortaleza");
+        //MarkerOptions marker = new MarkerOptions();
+        //marker.position(fortaleza);
+        //marker.title("Fortaleza");
 
 
-        mMap.addMarker(marker);
+        //mMap.addMarker(marker);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(fortaleza));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);

@@ -43,10 +43,6 @@
         <activity
             android:name=".MapsFragment"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".NovoLocalActivity"
-            android:label="@string/title_activity_novo_local"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

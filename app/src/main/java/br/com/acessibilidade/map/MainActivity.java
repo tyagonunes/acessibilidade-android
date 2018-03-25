@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showFragment(new LocalFragment(), "LocalFragment");
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showFragment(new LocalFragment(), "LocalFragment");
+//            }
+//        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -108,8 +108,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_map:
                 showFragment(new MapsFragment(), "MapsFragment");
                 break;
-            case R.id.nav_local:
+
+            case R.id.nav_denuncia:
                 showFragment(new LocalFragment(), "LocalFragment");
+                break;
+
+            case R.id.nav_sobre:
+                showFragment(new SobreFragment(), "SobreFragment");
                 break;
         }
 

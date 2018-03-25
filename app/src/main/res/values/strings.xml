@@ -1,24 +1,24 @@
 <resources>
-    <string name="app_name">Map</string>
+    <string name="app_name">Mapa da Bala</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Mapa da bala</string>
     <string name="title_activity_novo_local">NovoLocalActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titulo_sobre">Quem somos</string>
+    <string name="texto_sobre">
+        O projeto Mapa da Bala Fortaleza surgiu da necessidade de informar sobre a realidade da escalada desenfreada de violência
+        na cidade, onde os cidadãos são vítimas todos os dias de assaltos, homicidios, latrocinios e até terrorismo por parte de
+        facções criminosas.<br></br>
 
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-    </string-array>
+        A aplicação vem com o objetivo de criar uma comunidade colaborativa, de forma que todos os cidadãos de bem possam contribuir
+        para o registro de ocorrencias e
+
+    </string>
+
+
 </resources>
