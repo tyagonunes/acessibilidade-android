@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Mapa da Bala</string>
+    <string name="app_name">Mapa de acesso</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_maps">Mapa da bala</string>
-    <string name="title_activity_novo_local">NovoLocalActivity</string>
+    <string name="title_activity_maps">Acessos</string>
+    <string name="title_activity_novo_local">Novo local</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="titulo_sobre">Quem somos</string>
@@ -19,6 +19,10 @@
         para o registro de ocorrencias na cidade
 
     </string>
+    <string name="title_activity_sobre">Sobre nós</string>
+    <string name="title_activity_maps2">Mapa</string>
+    <string name="title_activity_add_local">Novo local de acesso</string>
+    <string name="title_activity_feed">Últimos adicionados</string>
 
 
 </resources>

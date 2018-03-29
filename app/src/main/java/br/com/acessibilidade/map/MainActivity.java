@@ -41,15 +41,15 @@ public class MainActivity extends AppCompatActivity
 //        });
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
+//
         fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -84,44 +84,65 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            return true;
+//        if (id == R.id.action_about) {
+//            Intent intent = new Intent(this, SobreActivity.class);
+//            startActivity(intent);
+//
+//        }
+
+        switch (id) {
+            case R.id.action_about:
+                Intent intentSobre = new Intent(this, SobreActivity.class);
+                startActivity(intentSobre);
+                break;
+            case R.id.action_add:
+                Intent intentAdd = new Intent(this, AddLocalActivity.class);
+                startActivity(intentAdd);
+                break;
+
+            case R.id.action_feed:
+                Intent intentFeed = new Intent(this, FeedActivity.class);
+                startActivity(intentFeed);
+                break;
+
+            default:
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void showFragment(Fragment fragment, String name){
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.container, fragment, name);
-        transaction.commit();
-    }
+//    private void showFragment(Fragment fragment, String name){
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//        transaction.replace(R.id.container, fragment, name);
+//        transaction.commit();
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-
-        switch (id) {
-            case R.id.nav_map:
-                showFragment(new MapsFragment(), "MapsFragment");
-                break;
-
-            case R.id.nav_denuncia:
-                showFragment(new LocalFragment(), "LocalFragment");
-                break;
-
-            case R.id.nav_sobre:
-                showFragment(new SobreFragment(), "SobreFragment");
-                break;
-        }
-
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+//        int id = item.getItemId();
+//
+//
+//        switch (id) {
+//            case R.id.nav_map:
+//                showFragment(new MapsFragment(), "MapsFragment");
+//                break;
+//
+//            case R.id.nav_denuncia:
+//                showFragment(new LocalFragment(), "LocalFragment");
+//                break;
+//
+//            case R.id.nav_sobre:
+//                showFragment(new SobreFragment(), "SobreFragment");
+//                break;
+//        }
+//
+//
+//
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
