@@ -26,27 +26,7 @@ public class SobreActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
-
-        EndpointClient endpointClient = ServiceGenerator
-                .createService(EndpointClient.class, null);
-
-        endpointClient.listarLocais().enqueue(new Callback<Response<Local>>() {
-            @Override
-            public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
-                Log.d("Response", response.body().getData().toString());
-
-            }
-
-            @Override
-            public void onFailure(Call<Response<Local>> call, Throwable t) {
-                Log.d("Erro", t.getLocalizedMessage());
-            }
-        });
 
     }
 

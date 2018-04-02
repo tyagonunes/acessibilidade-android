@@ -36,27 +36,15 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getMapAsync(this);
+
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        EndpointClient endpointClient = ServiceGenerator
-                .createService(EndpointClient.class, null);
-
-        endpointClient.listarLocais().enqueue(new Callback<Response<Local>>() {
-            @Override
-            public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
-                Log.d("", response.body().getData().toString());
-
-            }
-
-            @Override
-            public void onFailure(Call<Response<Local>> call, Throwable t) {
-                Log.d("", t.getLocalizedMessage());
-            }
-        });
-
+        getMarkers();
     }
 
     /**
@@ -76,14 +64,36 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
         // Add a marker in Sydney and move the camera
         LatLng fortaleza = new LatLng(-3.786359, -38.503355);
-        //MarkerOptions marker = new MarkerOptions();
-        //marker.position(fortaleza);
-        //marker.title("Fortaleza");
+        MarkerOptions marker = new MarkerOptions();
+        marker.position(fortaleza);
+        marker.title("Fortaleza");
 
 
-        //mMap.addMarker(marker);
+        mMap.addMarker(marker);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(fortaleza));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+    }
+
+    private void getMarkers() {
+        EndpointClient endpointClient = ServiceGenerator
+                .createService(EndpointClient.class, null);
+
+        endpointClient.listarLocais().enqueue(new Callback<Response<Local>>() {
+            @Override
+            public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
+                Log.d("Sucesso", response.body().getData().toString());
+
+            }
+
+            @Override
+            public void onFailure(Call<Response<Local>> call, Throwable t) {
+                Log.d("Falha", t.getLocalizedMessage());
+            }
+        });
+    }
+
+    private void getAllLocations() {
+
     }
 }

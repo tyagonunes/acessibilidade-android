@@ -112,37 +112,11 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-//    private void showFragment(Fragment fragment, String name){
-//        FragmentTransaction transaction = fragmentManager.beginTransaction();
-//        transaction.replace(R.id.container, fragment, name);
-//        transaction.commit();
-//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-//        int id = item.getItemId();
-//
-//
-//        switch (id) {
-//            case R.id.nav_map:
-//                showFragment(new MapsFragment(), "MapsFragment");
-//                break;
-//
-//            case R.id.nav_denuncia:
-//                showFragment(new LocalFragment(), "LocalFragment");
-//                break;
-//
-//            case R.id.nav_sobre:
-//                showFragment(new SobreFragment(), "SobreFragment");
-//                break;
-//        }
-//
-//
-//
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 }

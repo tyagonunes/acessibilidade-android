@@ -53,9 +53,6 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".MapsActivity2"
-            android:label="@string/title_activity_maps2" />
-        <activity
             android:name=".AddLocalActivity"
             android:label="@string/title_activity_add_local"
             android:parentActivityName=".MainActivity"
@@ -64,7 +61,7 @@
             android:name=".FeedActivity"
             android:label="@string/title_activity_feed"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
