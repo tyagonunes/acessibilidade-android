@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     //public static final String API_BASE_URL = "http://10.8.70.218:5000/";
-    public static final String API_BASE_URL = "http://10.54.129.190:5000/";
+    public static final String API_BASE_URL = "http://192.168.43.239:5000/";
     public Context ctx;
 
     private static OkHttpClient.Builder httpClient;
@@ -40,7 +40,7 @@ public class ServiceGenerator {
 //                public Response intercept(Chain chain) throws IOException {
 //
 //
-//                    return null;
+//                    return chain;
 //                }
 //            });
         }
