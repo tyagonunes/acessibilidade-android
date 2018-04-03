@@ -4,11 +4,13 @@ import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -20,7 +22,7 @@ import br.com.acessibilidade.map.network.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback {
+public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
 
@@ -64,12 +66,12 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
         // Add a marker in Sydney and move the camera
         LatLng fortaleza = new LatLng(-3.786359, -38.503355);
-        MarkerOptions marker = new MarkerOptions();
-        marker.position(fortaleza);
-        marker.title("Fortaleza");
+       // MarkerOptions marker = new MarkerOptions();
+       // marker.position(fortaleza);
+       // marker.title("Fortaleza");
 
 
-        mMap.addMarker(marker);
+       // mMap.addMarker(marker);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(fortaleza));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
@@ -84,6 +86,10 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
             public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
                 Log.d("Sucesso", response.body().getData().toString());
 
+                for(Local local: response.body().getData()) {
+                    setAllLocations(local);
+                }
+
             }
 
             @Override
@@ -93,7 +99,22 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         });
     }
 
-    private void getAllLocations() {
+    private void setAllLocations(Local local) {
+        Log.d("Local", local.getLatitude().toString());
 
+        LatLng latLng = new LatLng(local.getLatitude(), local.getLongitude());
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title(local.getNome());
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        mMap.addMarker(markerOptions);
+        mMap.setOnInfoWindowClickListener(this);
+
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(context, "Info window clicked",
+                Toast.LENGTH_SHORT).show();
     }
 }
