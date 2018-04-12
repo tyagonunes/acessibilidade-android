@@ -8,12 +8,6 @@
         android:title="Notícias"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_feed"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_rss_feed_white_24dp"
-        android:title="Notícias"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
         android:icon="@drawable/ic_info_black_24dp"

@@ -9,20 +9,23 @@
     <string name="title_activity_novo_local">Novo local</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="titulo_sobre">Quem somos</string>
-    <string name="texto_sobre">
-        O projeto Mapa da Bala Fortaleza surgiu da necessidade de informar sobre a realidade da escalada desenfreada de violência
-        na cidade, onde os cidadãos são vítimas todos os dias de assaltos, homicidios, latrocinios e até terrorismo por parte de
-        facções criminosas.
 
-        A aplicação vem com o objetivo de criar uma comunidade colaborativa, de forma que os cidadãos de bem possam contribuir
-        para o registro de ocorrencias na cidade
+    <string name="texto_sobre">
+        O mapa da acessibilidade é um projeto que tem como objetivo ajudar pessoas
+        com deficiência a planejarem seus trajetos pela cidade através dos pontos
+        marcados no mapa.
+        \n \n
+        Os marcadores estão distribuidos em 3 categorias:
+        Locais que apresentam dificuldade de acesso para pessoas defientes,
+        locais que possuem estrutura que facilitam o acesso de deficientes e
+        instituições de apoio a deficientes.
+        \n \n
+        O mapa é colaborativo e todos os cidadãos podem deixar sua contribuição apontando lugares
+        da cidade e mostrando suas caracteristicas de acessibilidade para pessoas deficientes.
 
     </string>
-    <string name="title_activity_sobre">Sobre nós</string>
-    <string name="title_activity_maps2">Mapa</string>
-    <string name="title_activity_add_local">Novo local de acesso</string>
-    <string name="title_activity_feed">Últimos adicionados</string>
+    <string name="title_activity_about">Sobre nós</string>
+    <string name="title_activity_new_local">Novo local de acesso</string>
 
 
 </resources>

@@ -41,6 +41,9 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getMapAsync(this);
+
+
+
     }
 
     @Override
@@ -92,6 +95,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
 
+
         switch (local.getTipo()) {
             case 1:
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker_green));
@@ -109,6 +113,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker_black));
                 break;
         }
+
 
         Marker marker = mMap.addMarker(markerOptions);
         marker.setTag(local);
