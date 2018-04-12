@@ -13,11 +13,22 @@ public class Local {
     private Double latitude;
     private Double longitude;
     private String descricao;
-    private String tipo;
+    private int tipo;
     private String criacao;
     private int _v;
     private String []acessos;
 
+    public String getAcessos() {
+        String toReturn = "";
+        for (int i = 0; i < this.acessos.length ; i++){
+            toReturn += "- " + this.acessos[i] + "\n";
+        }
+        return toReturn;
+    }
+
+    public void setAcessos(String[] acessos) {
+        this.acessos = acessos;
+    }
 
     public String get_id() {
         return _id;
@@ -58,6 +69,12 @@ public class Local {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public int getTipo() { return tipo; }
+
+    public void setTipo(int tipo) { this.tipo = tipo; }
+
+
 
     @Override
     public String toString() {

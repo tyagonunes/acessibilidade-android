@@ -1,9 +1,11 @@
 package br.com.acessibilidade.map;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,7 +24,8 @@ import br.com.acessibilidade.map.network.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
+public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback,
+        GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
 
@@ -49,32 +52,19 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         getMarkers();
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-//        mMap.getUiSettings().setZoomControlsEnabled(true);
-
 
         // Add a marker in Sydney and move the camera
         LatLng fortaleza = new LatLng(-3.786359, -38.503355);
-       // MarkerOptions marker = new MarkerOptions();
-       // marker.position(fortaleza);
-       // marker.title("Fortaleza");
 
-
-       // mMap.addMarker(marker);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(fortaleza));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+        mMap.setOnMarkerClickListener(this);
+
     }
 
     private void getMarkers() {
@@ -100,21 +90,56 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     }
 
     private void setAllLocations(Local local) {
-        Log.d("Local", local.getLatitude().toString());
 
         LatLng latLng = new LatLng(local.getLatitude(), local.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
-        markerOptions.title(local.getNome());
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        mMap.addMarker(markerOptions);
-        mMap.setOnInfoWindowClickListener(this);
+
+
+        switch (local.getTipo()) {
+            case 1:
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker_green));
+                break;
+
+            case 2:
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker_red));
+                break;
+
+            case 3:
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker_black));
+                break;
+
+            default:
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker_black));
+                break;
+        }
+
+
+        Marker marker = mMap.addMarker(markerOptions);
+        marker.setTag(local);
 
     }
 
     @Override
-    public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(context, "Info window clicked",
-                Toast.LENGTH_SHORT).show();
+    public boolean onMarkerClick(Marker marker) {
+
+        Local local = (Local) marker.getTag();
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_local);
+        dialog.setCancelable(true);
+
+        // set the custom dialog components - text, image and button
+        TextView name = (TextView) dialog.findViewById(R.id.title_local);
+        name.setText(local.getNome());
+
+        TextView description = (TextView) dialog.findViewById(R.id.description_local);
+        description.setText(local.getDescricao() != null && !local.getDescricao().isEmpty() ?
+                local.getDescricao() : "Nenhuma descição");
+
+        TextView acessos = (TextView) dialog.findViewById(R.id.acessos_local);
+        acessos.setText(local.getAcessos());
+
+        dialog.show();
+        return true;
     }
 }
