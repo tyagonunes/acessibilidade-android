@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mapa de acesso</string>
+    <string name="app_name">Let me walk</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -24,8 +24,14 @@
         da cidade e mostrando suas caracteristicas de acessibilidade para pessoas deficientes.
 
     </string>
-    <string name="title_activity_about">Sobre nós</string>
-    <string name="title_activity_new_local">Novo local de acesso</string>
+    <string name="title_activity_about">Sobre</string>
+    <string name="title_activity_new_local">Novo local</string>
 
+
+    <string-array name="types_array">
+        <item>Local com acessibilidade</item>
+        <item>Local com acesso dificultado ou incacessivel</item>
+        <item>Instituição de apoio a deficientes</item>
+    </string-array>
 
 </resources>

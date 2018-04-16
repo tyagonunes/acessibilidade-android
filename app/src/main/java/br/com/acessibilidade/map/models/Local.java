@@ -18,13 +18,7 @@ public class Local {
     private int _v;
     private String []acessos;
 
-    public String getAcessos() {
-        String toReturn = "";
-        for (int i = 0; i < this.acessos.length ; i++){
-            toReturn += "- " + this.acessos[i] + "\n";
-        }
-        return toReturn;
-    }
+
 
     public void setAcessos(String[] acessos) {
         this.acessos = acessos;
@@ -74,7 +68,13 @@ public class Local {
 
     public void setTipo(int tipo) { this.tipo = tipo; }
 
-
+    public String getAcessos() {
+        String toReturn = "";
+        for (int i = 0; i < this.acessos.length ; i++){
+            toReturn += "- " + this.acessos[i] + "\n";
+        }
+        return toReturn;
+    }
 
     @Override
     public String toString() {

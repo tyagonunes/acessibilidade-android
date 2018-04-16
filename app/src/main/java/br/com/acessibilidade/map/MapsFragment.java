@@ -71,7 +71,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         endpointClient.listarLocais().enqueue(new Callback<Response<Local>>() {
             @Override
             public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
-                Log.d("Sucesso", response.body().getData().toString());
+               // Log.d("Sucesso", response.body().getData().toString());
 
                 for(Local local: response.body().getData()) {
                     setAllLocations(local);

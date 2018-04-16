@@ -48,9 +48,24 @@
                         android:id="@+id/local_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:hint="Nome do local" />
 
                 </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16sp"
+                android:layout_marginBottom="16sp">
+
+
+                <Spinner
+                    android:id="@+id/types_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -65,6 +80,7 @@
                         android:id="@+id/input_descicao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:hint="Coloque um comentário sobre o local" />
                 </android.support.design.widget.TextInputLayout>
 
