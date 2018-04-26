@@ -68,6 +68,16 @@ public class Local {
 
     public void setTipo(int tipo) { this.tipo = tipo; }
 
+    public String getAcessos2() {
+        String toReturn = "[";
+        for (int i = 0; i < acessos.length; i++) {
+            if(i < acessos.length -1) toReturn += "\"" + acessos[i] + "\",";
+            else toReturn += "\"" + acessos[i] + "\"";
+        }
+        toReturn +="]";
+        return toReturn;
+    }
+
     public String getAcessos() {
         String toReturn = "";
         for (int i = 0; i < this.acessos.length ; i++){
@@ -76,18 +86,15 @@ public class Local {
         return toReturn;
     }
 
+
     @Override
     public String toString() {
-        return "Local{" +
-                "_id='" + _id + '\'' +
-                ", nome='" + nome + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", descricao='" + descricao + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", criacao='" + criacao + '\'' +
-                ", _v=" + _v +
-                ", acessos=" + Arrays.toString(acessos) +
-                '}';
+        return "{ \"nome\": \"" + nome + "\"" +
+                ", \"latitude\":" + latitude +
+                ", \"longitude\":" + longitude +
+                ", \"descricao\": \"" + descricao + "\"" +
+                ", \"tipo\":" + tipo +
+                ", \"acessos\":" + getAcessos2() +
+                "}";
     }
 }
