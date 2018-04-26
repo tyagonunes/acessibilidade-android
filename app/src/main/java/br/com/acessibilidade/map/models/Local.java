@@ -89,12 +89,12 @@ public class Local {
 
     @Override
     public String toString() {
-        return "{ \"nome\": \"" + nome + "\"" +
-                ", \"latitude\":" + latitude +
-                ", \"longitude\":" + longitude +
-                ", \"descricao\": \"" + descricao + "\"" +
-                ", \"tipo\":" + tipo +
-                ", \"acessos\":" + getAcessos2() +
+        return "{\"Nome\": \"" + nome + "\"" +
+                ", \"Latitude\":\"" + latitude + "\"" +
+                ", \"Longitude\":\"" + longitude + "\"" +
+                ", \"Descricao\": \"" + descricao + "\"" +
+                ", \"Tipo\":\"" + tipo + "\"" +
+                ", \"Acessos\":" + getAcessos2() +
                 "}";
     }
 }

@@ -113,16 +113,16 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
                         .createService(EndpointClient.class, null);
 
                 HashMap<String, Object> data = new HashMap<>();
-                data.put("nome", local.getNome());
-                data.put("latitude", local.getLatitude());
-                data.put("longitude", local.getLongitude());
-                data.put("descricao", local.getDescricao());
-                data.put("tipo", local.getTipo());
-                data.put("acessos", local.getAcessos2());
+                data.put("Nome", local.getNome());
+                data.put("Latitude", local.getLatitude().toString());
+                data.put("Longitude", local.getLongitude().toString());
+                data.put("Descricao", local.getDescricao());
+                data.put("Tipo", local.getTipo());
+                data.put("Acessos", local.getAcessos2());
 
-                Log.d("Successo", "Place Selected: " + local.toString());
+                Log.d("Successo", "Place Selected: " + data.toString());
 
-              Call<Response<Local>> call = endpointClient.criarLocal(local.toString());
+              Call<Response<Local>> call = endpointClient.criarLocal(data);
               call.enqueue(new Callback<Response<Local>>() {
                   @Override
                   public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {

@@ -18,5 +18,5 @@ public interface EndpointClient {
     Call<Response<Local>> listarLocais();
 
     @POST("locais")
-    Call<Response<Local>> criarLocal(@Body String data);
+    Call<Response<Local>> criarLocal(@Body HashMap<String, Object> data);
 }
