@@ -107,6 +107,8 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
 
                 local.setAcessos(acessos);
 
+             //   Log.d("Acessos", "Acessos: " + local.getAcessos3().toString());
+
 
 
                 EndpointClient endpointClient = ServiceGenerator
@@ -118,7 +120,7 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
                 data.put("Longitude", local.getLongitude().toString());
                 data.put("Descricao", local.getDescricao());
                 data.put("Tipo", local.getTipo());
-                data.put("Acessos", local.getAcessos2());
+                data.put("Acessos", local.getAcessos3());
 
                 Log.d("Successo", "Place Selected: " + data.toString());
 
@@ -126,9 +128,11 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
               call.enqueue(new Callback<Response<Local>>() {
                   @Override
                   public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
-                      if(response.isSuccessful())
-                         Log.d("", "isSuccessful" + response.body());
-                      Log.d("", "falha " + response.code());
+                      if(response.isSuccessful()) {
+                          Log.d("", "isSuccessful" + response.body());
+                          Log.d("", "Status " + response.code());
+                      }
+
                   }
 
                   @Override

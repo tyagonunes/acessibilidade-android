@@ -16,7 +16,7 @@ public class Local {
     private int tipo;
     private String criacao;
     private int _v;
-    private String []acessos;
+    private String[] acessos;
 
 
 
@@ -76,6 +76,10 @@ public class Local {
         }
         toReturn +="]";
         return toReturn;
+    }
+
+    public String[] getAcessos3() {
+        return acessos;
     }
 
     public String getAcessos() {
