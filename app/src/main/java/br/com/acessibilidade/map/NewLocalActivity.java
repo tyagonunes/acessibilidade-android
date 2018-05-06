@@ -1,5 +1,7 @@
 package br.com.acessibilidade.map;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -85,7 +88,7 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
         autocompleteFragment.setOnPlaceSelectedListener(this);
-        autocompleteFragment.setHint("Encontre o local aqui");
+        autocompleteFragment.setHint("Endereço ou nome do local");
 
         Spinner spinner = (Spinner) findViewById(R.id.types_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -104,45 +107,20 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
 
                 String[] acessos = new String[acessoTemp.size()];
                 acessoTemp.toArray(acessos);
-
                 local.setAcessos(acessos);
 
-             //   Log.d("Acessos", "Acessos: " + local.getAcessos3().toString());
 
+                Log.d("", "local " + local.toString());
 
-
-                EndpointClient endpointClient = ServiceGenerator
-                        .createService(EndpointClient.class, null);
-
-                HashMap<String, Object> data = new HashMap<>();
-                data.put("Nome", local.getNome());
-                data.put("Latitude", local.getLatitude().toString());
-                data.put("Longitude", local.getLongitude().toString());
-                data.put("Descricao", local.getDescricao());
-                data.put("Tipo", local.getTipo());
-                data.put("Acessos", local.getAcessos3());
-
-                Log.d("Successo", "Place Selected: " + data.toString());
-
-              Call<Response<Local>> call = endpointClient.criarLocal(data);
-              call.enqueue(new Callback<Response<Local>>() {
-                  @Override
-                  public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
-                      if(response.isSuccessful()) {
-                          Log.d("", "isSuccessful" + response.body());
-                          Log.d("", "Status " + response.code());
-                      }
-
-                  }
-
-                  @Override
-                  public void onFailure(Call<Response<Local>> call, Throwable t) {
-                    t.printStackTrace();
-                  }
-              });
+                if(local.getLatitude() == null && local.getLongitude() == null) {
+                    showDialogResponse(false, "Você ainda não escolheu um endereço!");
+                }else if(local.getAcessos3().length == 0){
+                    showDialogResponse(false, "Voce ainda não selecionou caracteristicas para local!");
+                }else {
+                     sendLocalToApi();
+                }
             }
         });
-
     }
 
 
@@ -155,14 +133,13 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
     }
 
     @Override
-    public void onError(Status status) {
-
-    }
+    public void onError(Status status) { }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 
-    }
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) { }
 
 
     @Override
@@ -181,11 +158,6 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
                 local.setTipo(3);
                 populateCheckbox(checkboxInstituicoes);
             }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
     public void populateCheckbox (List<String> list) {
@@ -209,8 +181,82 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
                     }
                 }
             });
-
             linearLayout.addView(checkBox);
         }
+    }
+
+
+    public void showDialogResponse(boolean succes, String msg) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_response);
+
+        // set the custom dialog components - text, image and button
+        Button btnConfirm =  dialog.findViewById(R.id.btn_response_confirm);
+        TextView title = dialog.findViewById(R.id.title_response);
+        TextView subTitle = dialog.findViewById(R.id.title_msg_response);
+
+        if(succes) {
+            title.setText("Obrigado!");
+            subTitle.setText(msg);
+
+            btnConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    finish();
+                }
+            });
+        } else {
+            title.setText("Oops!");
+            subTitle.setText(msg);
+
+            btnConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+        }
+        dialog.show();
+    }
+
+
+    private void sendLocalToApi() {
+        EndpointClient endpointClient = ServiceGenerator
+                .createService(EndpointClient.class, null);
+
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("Nome", local.getNome());
+        data.put("Latitude", local.getLatitude().toString());
+        data.put("Longitude", local.getLongitude().toString());
+        data.put("Descricao", local.getDescricao());
+        data.put("Tipo", local.getTipo());
+        data.put("Acessos", local.getAcessos3());
+
+        Log.d("Successo", "Place Selected: " + data.toString());
+
+        Call<Response<Local>> call = endpointClient.criarLocal(data);
+        call.enqueue(new Callback<Response<Local>>() {
+            @Override
+            public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
+                if(response.isSuccessful()) {
+                    Log.d("", "isSuccessful" + response.body());
+                    Log.d("", "Status " + response.code());
+
+                    if(response.code() == 200) {
+                        showDialogResponse(true, "Local cadastrado com sucesso");
+                    } else {
+                        showDialogResponse(false, "Erro ao cadastrar o local no servidor");
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Response<Local>> call, Throwable t) {
+                t.printStackTrace();
+                showDialogResponse(false, "Erro de conexão com o servidor. Tente de novo mais tarde");
+            }
+        });
     }
 }

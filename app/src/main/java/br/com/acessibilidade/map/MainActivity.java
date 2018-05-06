@@ -31,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -39,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         transaction.commitAllowingStateLoss();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

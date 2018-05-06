@@ -22,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16sp"
-                android:layout_marginBottom="16sp">
+                android:elevation="0dp"
+                android:layout_marginBottom="25dp">
 
                 <fragment
                     android:id="@+id/place_autocomplete_fragment"
@@ -34,65 +35,90 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="#000"
+                    android:layout_marginLeft="5dp"
+                    android:text="Título"/>
+                <EditText
                         android:id="@+id/local_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingBottom="15dp"
                         android:textSize="14sp"
-                        android:hint="Nome do local" />
-                </android.support.design.widget.TextInputLayout>
+                        android:hint="Dê um nome para o local" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="#000"
+                    android:layout_marginLeft="5dp"
+                    android:text="Descrição"/>
+                <EditText
+                    android:id="@+id/descicao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingBottom="15dp"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="20dp"
+                    android:hint="Fale algo mais sobre o local" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
-                android:layout_marginBottom="20sp">
-
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="#000"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="Categoria"/>
                 <Spinner
                     android:id="@+id/types_spinner"
+                    android:elevation="@dimen/activity_vertical_margin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/checkbox_acessos"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
-
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/descicao"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:hint="Coloque um comentário sobre o local" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_send"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Enviar" />
+                android:text="Enviar"
+                android:background="@drawable/mybutton"
+                android:textColor="#fff"
+                style="@style/Widget.AppCompat.Button.Borderless"/>
         </LinearLayout>
 
     </ScrollView>
