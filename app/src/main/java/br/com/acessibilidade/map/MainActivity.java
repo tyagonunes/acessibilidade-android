@@ -31,7 +31,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentAdd = new Intent(getApplicationContext(), NewLocalActivity.class);
+                startActivity(intentAdd);
+            }
+        });
     }
 
     @Override
@@ -65,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentSobre = new Intent(this, AboutActivity.class);
                 startActivity(intentSobre);
                 break;
-            case R.id.action_add:
-                Intent intentAdd = new Intent(this, NewLocalActivity.class);
-                startActivity(intentAdd);
-                break;
+//            case R.id.action_add:
+//                Intent intentAdd = new Intent(this, NewLocalActivity.class);
+//                startActivity(intentAdd);
+//                break;
 
             default:
                 return true;
