@@ -19,9 +19,9 @@ public class ServiceGenerator {
     //foitop
     //public static final String API_BASE_URL = "http://10.8.70.218:5000/";
     //Moto G
-    //public static final String API_BASE_URL = "http://192.168.43.239:5000/";
+    public static final String API_BASE_URL = "http://192.168.43.239:5000/";
     // Casa
-     public static final String API_BASE_URL = "http://192.168.25.6:5000/";
+    // public static final String API_BASE_URL = "http://192.168.25.6:5000/";
 
     public Context ctx;
 
