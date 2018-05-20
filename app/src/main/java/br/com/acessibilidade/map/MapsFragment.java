@@ -3,7 +3,12 @@ package br.com.acessibilidade.map;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,11 +29,13 @@ import br.com.acessibilidade.map.network.ServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 
+import static android.content.ContentValues.TAG;
+
 public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
-
+    private EditText mSearchText;
     private Context context;
 
     @Override
@@ -42,6 +49,11 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         getMapAsync(this);
     }
+
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//         mSearchText = (EditText) getView().findViewById(R.id.input_search);
+//    }
 
     @Override
     public void onResume() {
@@ -63,6 +75,27 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         mMap.setOnMarkerClickListener(this);
 
     }
+
+//    private void init() {
+//        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+//                if(i == EditorInfo.IME_ACTION_DONE || keyEvent.getAction() == keyEvent.ACTION_DOWN
+//                        || keyEvent.getAction() == keyEvent.KEYCODE_ENTER) {
+//                      //  geoLocate();
+//                    Log.d(TAG, "Geolocate: geolocating");
+//                }
+//
+//                return false;
+//            }
+//        });
+//    }
+
+//    private void geoLocate() {
+//        Log.d(TAG, "Geolocate: geolocating");
+//
+//        String
+//    }
 
     private void getMarkers() {
         EndpointClient endpointClient = ServiceGenerator

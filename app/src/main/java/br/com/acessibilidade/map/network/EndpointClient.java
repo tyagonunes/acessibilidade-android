@@ -19,4 +19,8 @@ public interface EndpointClient {
 
     @POST("locais")
     Call<Response<Local>> criarLocal(@Body HashMap<String, Object> data);
+
+    @POST("usuarios/login")
+    Call<Response<String>> login(@Body HashMap<String, Object> data);
+
 }

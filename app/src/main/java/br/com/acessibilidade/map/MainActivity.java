@@ -1,6 +1,8 @@
 package br.com.acessibilidade.map;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +33,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+
+        if(sharedPreferences.contains("logged")) {
+            Log.d("", "loggedSuccessful");
+        } else {
+            Intent intentLogin = new Intent(this, LoginActivity.class);
+            startActivity(intentLogin);
+            finish();
+        }
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +86,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentSobre = new Intent(this, AboutActivity.class);
                 startActivity(intentSobre);
                 break;
-//            case R.id.action_add:
-//                Intent intentAdd = new Intent(this, NewLocalActivity.class);
-//                startActivity(intentAdd);
-//                break;
+            case R.id.action_logout:
+                SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+
+                Intent intentLogin = new Intent(this, LoginActivity.class);
+                startActivity(intentLogin);
+                break;
 
             default:
                 return true;
