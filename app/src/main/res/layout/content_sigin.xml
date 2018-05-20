@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".LoginActivity">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SiginActivity"
+    tools:showIn="@layout/activity_sigin">
+
+
 
 
 
@@ -45,7 +48,7 @@
                     android:text="Email"/>
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/signin_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
@@ -68,7 +71,31 @@
                     android:text="Senha"/>
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/signin_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:textColor="#000"
+                    android:text="Confirmar senha"/>
+
+                <EditText
+                    android:id="@+id/signin_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -78,37 +105,20 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/signin_button"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Entrar"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Cadastrar"
                 android:textStyle="bold"
                 android:background="@drawable/mybutton"
                 android:textColor="#fff"
                 style="@style/Widget.AppCompat.Button.Borderless"/>
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_height="match_parent"
-                android:text="OU"
-                android:gravity="center"/>
-
-            <TextView
-                android:id="@+id/redirect_signin"
-                android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                android:text="Cadastrar-se"
-                android:gravity="center"/>
-
-
-
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

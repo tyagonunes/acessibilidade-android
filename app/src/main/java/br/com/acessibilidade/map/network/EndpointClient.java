@@ -23,4 +23,7 @@ public interface EndpointClient {
     @POST("usuarios/login")
     Call<Response<String>> login(@Body HashMap<String, Object> data);
 
+    @POST("usuarios/cadastrar")
+    Call<Response<String>> sigin(@Body HashMap<String, Object> data);
+
 }

@@ -1,6 +1,7 @@
 package br.com.acessibilidade.map;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -222,6 +223,12 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
 
 
     private void sendLocalToApi() {
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("Cadastrando");
+        progress.setMessage("Verificando dados...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
+
         EndpointClient endpointClient = ServiceGenerator
                 .createService(EndpointClient.class, null);
 
@@ -239,6 +246,7 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
         call.enqueue(new Callback<Response<Local>>() {
             @Override
             public void onResponse(Call<Response<Local>> call, retrofit2.Response<Response<Local>> response) {
+                progress.dismiss();
                 if(response.isSuccessful()) {
                     Log.d("", "isSuccessful" + response.body());
                     Log.d("", "Status " + response.code());
@@ -254,7 +262,7 @@ public class NewLocalActivity extends AppCompatActivity implements PlaceSelectio
 
             @Override
             public void onFailure(Call<Response<Local>> call, Throwable t) {
-                t.printStackTrace();
+                progress.dismiss();
                 showDialogResponse(false, "Erro de conexão com o servidor. Tente de novo mais tarde");
             }
         });
